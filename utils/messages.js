@@ -3,6 +3,12 @@
 // strings in our code
 
 module.exports = {
-    failureFetchingOrders: 'Could not fetch orders',
-    successfullyFetchedOrders: 'Orders fetched successfully'
+    failureFetchingOrders: 'Could not fetch order(s)',
+    successfullyFetchedOrders: 'Order(s) fetched successfully',
+
+    failureInsertingOrder: 'Could not insert new order',
+    successInsertingOrder: 'Order inserted successfully',
+
+    failureUpdatingOrder: 'Could not update order',
+    successUpdatingOrder: 'Updated order successfully'
 }

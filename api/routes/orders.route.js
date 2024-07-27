@@ -14,17 +14,21 @@ const ordersRouter = express.Router()
 ordersRouter.get(`/`, async (req, res) => {
 
     await ordersController.getAllOrders(req, res)
-
-    // res.json(items);
 });
 
 
 ordersRouter.get(`/:id`, async (req, res) => {
 
     await ordersController.getSpecificOrder(req, res)
-
-    res.json(items);
 });
 
+ordersRouter.post('/create', async (req, res) => {
+
+    await ordersController.insertOrder(req, res)
+})
+
+ordersRouter.post('/update', async (req, res) => {
+    await ordersController.updateOrderStatus(req, res)
+})
 
 module.exports = ordersRouter

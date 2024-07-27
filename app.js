@@ -1,7 +1,6 @@
 'use strict'
 require('dotenv').config();
 
-//vLdA48Ua.2AK25X
 
 const express = require('express');
 const helmet = require('helmet')
@@ -13,11 +12,20 @@ const checkSupabaseConnection = require('./utils/supabase/verifySupabaseConnecti
 
 const {logger, requestLogger} = require('./utils/logger')
 
+process
+  .on('unhandledRejection', (reason, p) => {
+    logger.error(reason, 'Unhandled Rejection at Promise', p);
+  })
+  .on('uncaughtException', err => {
+    logger.error(err, 'Uncaught Exception thrown');
+    // process.exit(1); 
+  });
+
 const app = express();
 
 //to parse html form data
 app.use(express.urlencoded({ extended: false }));
-
+app.use(express.json())
 //security middleware
 app.use(helmet())
 

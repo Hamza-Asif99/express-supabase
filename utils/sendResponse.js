@@ -10,13 +10,9 @@ const sendResponse = (req, res, data) => {
 
     logger.responseLogger(req,res,data)
     //bad request from client, either missing attributes or bad values
-    if(data.error === 'client') {
+    if(data.error) {
         res.status(400).send(data.responseObj)
-    }
-    
-    //server error
-    if(data.error === 'server') {
-        res.status(500).send(data.responseObj)
+        return
     }
 
     res.send(data.responseObj)
