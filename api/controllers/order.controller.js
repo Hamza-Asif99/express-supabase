@@ -29,7 +29,7 @@ const getAllOrders = async (req,res) => {
         )
 
     } catch(error) {
-        loger.error(`Could not fetch orders: ${error}`)
+        logger.error(`Could not fetch orders: ${error}`)
         return sendResponse(req, res, 
             {
                 error: error.validationError ? 'client' : 'server',
