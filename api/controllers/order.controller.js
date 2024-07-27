@@ -6,6 +6,7 @@
 const { sendResponse } = require('../../utils/sendResponse')
 const orderHandlers = require('../handlers/order.handler')
 const messages = require('../../utils/messages')
+const {logger} = require('../../utils/logger')
 
 const getAllOrders = async (req,res) => {
     
@@ -28,7 +29,7 @@ const getAllOrders = async (req,res) => {
         )
 
     } catch(error) {
-        console.log(`Could not fetch orders: ${error}`)
+        loger.error(`Could not fetch orders: ${error}`)
         return sendResponse(req, res, 
             {
                 error: error.validationError ? 'client' : 'server',

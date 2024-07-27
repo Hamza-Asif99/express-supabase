@@ -9,6 +9,8 @@ const helmet = require('helmet')
 const ordersRouter = require('./api/routes/orders.route')
 const checkSupabaseConnection = require('./utils/supabase/verifySupabaseConnection')
 
+const {logger, requestLogger} = require('./utils/logger')
+
 const app = express();
 
 //to parse html form data
@@ -18,6 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(helmet())
 app.disable('x-powered-by')  //reduces fingerprinting
 
+//logging
+app.use(requestLogger)
 //router
 app.use('/api/orders', ordersRouter)
 
@@ -29,9 +33,9 @@ const port = process.env.PORT;
     let connectionSuccess = await checkSupabaseConnection()
     if(connectionSuccess){
         app.listen(port, () => {
-            console.log(`Server is running on http://localhost:${port}`);
+            logger.info(`Server is running on http://localhost:${port}`);
         });
     }else{
-        console.log('Could not connect to Supabase. Server shutting down....')
+        logger.error('Could not connect to Supabase. Server shutting down....')
     }
 })()

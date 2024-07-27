@@ -1,0 +1,9 @@
+{
+    "logger": {
+        "logLevel": "all",
+        "consoleModeEnable": true,
+        "fileModeEnable": false,
+        "fileRotationTime":80,
+        "logDirectory":""
+    }
+}

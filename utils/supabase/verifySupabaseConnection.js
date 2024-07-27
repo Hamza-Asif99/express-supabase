@@ -1,5 +1,6 @@
 // Function to check Supabase connection
 
+const {logger} = require('../logger')
 const supabase = require('./supabaseClient')
 
 async function checkSupabaseConnection() {
@@ -9,11 +10,11 @@ async function checkSupabaseConnection() {
       .limit(1);
   
     if (error) {
-      console.error('Supabase connection failed:', error.message);
+      logger.error('Supabase connection failed:', error.message);
       return false
     }
   
-    console.log('Supabase connection successful');
+    logger.info('Supabase connection successful');
     return true
 }
 
